@@ -293,6 +293,9 @@
             "CheckpointHitbox": {
               "$path": "Source/Modules/Components/Server/CheckpointHitbox.luau"
             },
+            "Disappearing": {
+              "$path": "Source/Modules/Components/Server/Disappearing.luau"
+            },
             "RandomMover": {
               "$path": "Source/Modules/Components/Server/RandomMover.luau"
             },
