@@ -108,11 +108,14 @@ function VehicleServiceServer._setup_collisions(self: VehicleServiceServer, spaw
 		return
 	end
 
+	-- Fetch hitbox dimensions
+	local cframe, size = spawned_vehicle:GetBoundingBox()
+
 	-- Create a new vehicle hitbox
 	local hitbox = Instance.new("Part")
 	hitbox.Name = "Hitbox"
-	hitbox.Size = body.Size * 1.1
-	hitbox.CFrame = body.CFrame
+	hitbox.Size = size * 1.01
+	hitbox.CFrame = cframe
 	hitbox.CanCollide = false
 	hitbox.Transparency = 1
 	hitbox.Massless = true
