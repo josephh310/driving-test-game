@@ -296,6 +296,9 @@
             "Disappearing": {
               "$path": "Source/Modules/Components/Server/Disappearing.luau"
             },
+            "MovingPlatform": {
+              "$path": "Source/Modules/Components/Server/MovingPlatform.luau"
+            },
             "RandomMover": {
               "$path": "Source/Modules/Components/Server/RandomMover.luau"
             },
