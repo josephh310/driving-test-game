@@ -145,6 +145,9 @@
               },
               "ProximityPrompt": {
                 "$path": "Source/Modules/Components/Client/ProximityPrompt.luau"
+              },
+              "Spinner": {
+                "$path": "Source/Modules/Components/Client/Spinner.luau"
               }
             }
           },
