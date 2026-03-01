@@ -119,6 +119,9 @@
             "$className": "Folder",
             "Client": {
               "$className": "Folder",
+              "BoosterPad": {
+                "$path": "Source/Modules/Components/Client/BoosterPad.luau"
+              },
               "CheckpointHitbox": {
                 "$path": "Source/Modules/Components/Client/CheckpointHitbox.luau"
               },
