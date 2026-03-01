@@ -284,6 +284,12 @@
             "Barrier": {
               "$path": "Source/Modules/Components/Server/Barrier.luau"
             },
+            "Blocks": {
+              "$path": "Source/Modules/Components/Server/Blocks.luau"
+            },
+            "BoulderSpawner": {
+              "$path": "Source/Modules/Components/Server/BoulderSpawner.luau"
+            },
             "CheckpointHitbox": {
               "$path": "Source/Modules/Components/Server/CheckpointHitbox.luau"
             },
