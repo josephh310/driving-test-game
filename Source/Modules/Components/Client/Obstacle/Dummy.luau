@@ -1,5 +1,6 @@
 local DEFAULT_EFFECT_DURATION = 10
-local DUMMY_IMPULSE_STRENGTH = 100
+local DEFAULT_DUMMY_IMPULSE_STRENGTH = 5
+local DEFAULT_DUMMY_IMPULSE_MODE = "Normal" -- "Normal" applies impulse to the dummy leader, "ImpulseAll" applies impulse to all parts in the dummy
 
 local function set_instances_enabled(instances: { Instance }, is_visible: boolean)
 	for index, instance in instances do
@@ -17,6 +18,8 @@ return function(obstacle: Model | BasePart, hit: BasePart)
 	-- Attributes
 	local effect_duration = obstacle:GetAttribute("Dummy_Duration") or DEFAULT_EFFECT_DURATION
 	local dummy_unwelded = obstacle:GetAttribute("Dummy_Unwelded")
+	local impulse_strength = obstacle:GetAttribute("Dummy_ImpulseStrength") or DEFAULT_DUMMY_IMPULSE_STRENGTH
+	local impulse_mode = obstacle:GetAttribute("Dummy_ImpulseMode") or DEFAULT_DUMMY_IMPULSE_MODE
 
 	-- Create a dummy obstacle to unanchor
 	local dummy = obstacle:Clone()
@@ -60,8 +63,13 @@ return function(obstacle: Model | BasePart, hit: BasePart)
 
 	-- Impulse the dummy in the direction of the vehicle
 	-- This is to create the effect of the dummy being kicked around
-	dummy_leader:ApplyImpulse(hit.CFrame.LookVector * DUMMY_IMPULSE_STRENGTH)
-	print("impulsing")
+	if impulse_mode == "Normal" then
+		dummy_leader:ApplyImpulse(hit.AssemblyLinearVelocity * impulse_strength)
+	elseif impulse_mode == "ImpulseAll" then
+		for index, part in dummy_parts do
+			part:ApplyImpulse(hit.AssemblyLinearVelocity * impulse_strength)
+		end
+	end
 
 	-- Remove the obstacle after a delay
 	task.delay(effect_duration, function()
