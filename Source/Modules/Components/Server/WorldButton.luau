@@ -1,10 +1,9 @@
 --[[
     @Title: World Button
     @Author: Joseph (BreakLoop)
-    @Description: A physical button that animates when pressed, executes an OnPressed callback, and resets after a configurable delay.
+    @Description: A physical button that executes an OnPressed callback when touched and resets after a configurable delay.
 ]]
 
-local TweenService = game:GetService("TweenService")
 local DEFAULT_UNPRESS_DELAY = 1
 
 return function(button: Model)
@@ -24,14 +23,6 @@ return function(button: Model)
 		return
 	end
 
-	-- Tweens
-	local down_tween = TweenService:Create(button_part, TweenInfo.new(0.1), {
-		Position = button_part.Position + Vector3.new(0, -0.5, 0),
-	})
-	local up_tween = TweenService:Create(button_part, TweenInfo.new(0.1), {
-		Position = button_part.Position,
-	})
-
 	-- State
 	local button_down = false
 	local unpressed = nil :: () -> ()
@@ -40,11 +31,9 @@ return function(button: Model)
 	local function toggle_button(is_down: boolean)
 		if is_down then
 			button_part.Color = Color3.fromRGB(0, 255, 0)
-			down_tween:Play()
 			unpressed = on_pressed()
 		else
 			button_part.Color = Color3.fromRGB(255, 0, 0)
-			up_tween:Play()
 			if unpressed then
 				unpressed()
 			end
@@ -70,7 +59,5 @@ return function(button: Model)
 
 	return function()
 		touched_connection:Disconnect()
-		down_tween:Destroy()
-		up_tween:Destroy()
 	end
 end
