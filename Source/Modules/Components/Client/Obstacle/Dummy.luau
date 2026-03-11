@@ -5,7 +5,7 @@
 ]]
 
 local DEFAULT_EFFECT_DURATION = 10
-local DEFAULT_DUMMY_IMPULSE_STRENGTH = 5
+local DEFAULT_DUMMY_IMPULSE_STRENGTH = 2.5
 local DEFAULT_DUMMY_IMPULSE_MODE = "Normal" -- "Normal" applies impulse to the dummy leader, "ImpulseAll" applies impulse to all parts in the dummy
 
 local function set_instances_enabled(instances: { Instance }, is_visible: boolean)
