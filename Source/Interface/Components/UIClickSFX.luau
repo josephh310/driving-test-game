@@ -1,3 +1,9 @@
+--[[
+    @Title: UI Click SFX
+    @Author: Joseph (BreakLoop)
+    @Description: Plays mouse-down and mouse-up sound effects when a UI button is clicked.
+]]
+
 -- Constants
 local MouseDownSound = nil :: Sound
 local MouseUpSound = nil :: Sound

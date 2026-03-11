@@ -1,3 +1,9 @@
+--[[
+    @Title: Disappearing Part
+    @Author: Joseph (BreakLoop)
+    @Description: Makes a part fade out when touched by a vehicle and reappear after a delay, temporarily disabling collision.
+]]
+
 local TweenService = game:GetService("TweenService")
 local DEFAULT_WAIT_TIME = 2.5
 local DEFAULT_FADE_OUT_TIME = 2.5

@@ -1,3 +1,9 @@
+--[[
+    @Title: UI Hover Animation
+    @Author: Joseph (BreakLoop)
+    @Description: Scales a UI element up on mouse hover and restores it on mouse leave using tweened animations.
+]]
+
 -- Dependencies
 local TweenService = game:GetService("TweenService")
 local InterfaceUtils = require(script.Parent.Parent.Utilities)

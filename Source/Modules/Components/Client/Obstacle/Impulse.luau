@@ -1,3 +1,9 @@
+--[[
+    @Title: Obstacle Impulse
+    @Author: Joseph (BreakLoop)
+    @Description: Applies a knockback impulse to a vehicle, pushing it away from the obstacle upon collision.
+]]
+
 local IMPULSE_STRENGTH = 1000 -- Adjust as needed
 
 return function(obstacle: Model | BasePart, hit: BasePart)

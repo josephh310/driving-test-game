@@ -1,3 +1,9 @@
+--[[
+    @Title: Boulder Spawner
+    @Author: Joseph (BreakLoop)
+    @Description: Periodically spawns boulders at a given position that auto-despawn after a configurable delay.
+]]
+
 local DEFAULT_SPAWN_DELAY = 3
 local DEFAULT_DESPAWN_DELAY = 6
 local DEFAULT_BOULDER_SIZE = Vector3.new(10, 10, 10)

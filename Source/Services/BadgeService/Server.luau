@@ -1,3 +1,9 @@
+--[[
+    @Title: Badge Service (Server)
+    @Author: Joseph (BreakLoop)
+    @Description: Awards badges to players and tracks owned badges in the player's data store.
+]]
+
 local BadgeServiceServer = {}
 
 -- Dependencies

@@ -1,3 +1,9 @@
+--[[
+    @Title: Obstacle Service (Client)
+    @Author: Joseph (BreakLoop)
+    @Description: Initialises client-side obstacle components by observing tagged instances in the workspace.
+]]
+
 local ObstacleServiceClient = {}
 
 -- Dependencies

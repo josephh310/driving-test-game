@@ -1,3 +1,9 @@
+--[[
+    @Title: Skip Service (Client)
+    @Author: Joseph (BreakLoop)
+    @Description: Client-side skip service that tracks the skip timer, listens for updates, and handles skip usage or purchase prompts.
+]]
+
 local SkipServiceClient = {}
 
 -- Dependencies

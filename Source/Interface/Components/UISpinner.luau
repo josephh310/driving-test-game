@@ -1,3 +1,9 @@
+--[[
+    @Title: UI Spinner
+    @Author: Joseph (BreakLoop)
+    @Description: Continuously rotates a UI element at a configurable speed using RenderStepped.
+]]
+
 local RunService = game:GetService("RunService")
 local DEFAULT_ROTATION_SPEED = 100
 

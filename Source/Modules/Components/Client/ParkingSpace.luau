@@ -1,3 +1,9 @@
+--[[
+    @Title: Parking Space
+    @Author: Joseph (BreakLoop)
+    @Description: Detects when the local player's vehicle is fully parked within a designated region and activates the space on success.
+]]
+
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Observers = require(ReplicatedStorage.Packages.Observers)

@@ -1,3 +1,9 @@
+--[[
+    @Title: Color Customise
+    @Author: Joseph (BreakLoop)
+    @Description: Provides an HSV color wheel and brightness slider for players to pick and apply custom vehicle colors.
+]]
+
 local ColorCustomise = {
 	selected_color = nil :: Color3,
 	selected_brightness = nil :: number,

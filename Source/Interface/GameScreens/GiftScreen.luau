@@ -1,3 +1,9 @@
+--[[
+    @Title: Gift Screen
+    @Author: Joseph (BreakLoop)
+    @Description: Displays a list of players in the server and allows the local player to gift a product to another player.
+]]
+
 local GiftScreen = {
 	Connections = {},
 }

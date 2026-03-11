@@ -1,3 +1,9 @@
+--[[
+    @Title: Give Badge Command
+    @Author: Joseph (BreakLoop)
+    @Description: Admin command that awards a specified badge to a target player.
+]]
+
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local ServerScriptService = game:GetService("ServerScriptService")
 local BadgeServiceServer = require(ServerScriptService.Services.BadgeService.BadgeServiceServer)

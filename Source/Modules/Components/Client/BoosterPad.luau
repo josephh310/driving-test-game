@@ -1,3 +1,9 @@
+--[[
+    @Title: Booster Pad
+    @Author: Joseph (BreakLoop)
+    @Description: Applies a forward impulse to the local player's vehicle when it touches the pad, with a configurable cooldown.
+]]
+
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local VehicleServiceUtils = require(ReplicatedStorage.Shared.Services.VehicleService.VehicleServiceUtils)

@@ -1,3 +1,9 @@
+--[[
+    @Title: Random Mover
+    @Author: Joseph (BreakLoop)
+    @Description: Continuously applies random angular impulses to a part, causing it to spin and tumble unpredictably.
+]]
+
 return function(part: BasePart)
 	-- Attributes
 	local x_power = part:GetAttribute("MovementX")

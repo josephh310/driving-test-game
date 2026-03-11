@@ -1,3 +1,9 @@
+--[[
+    @Title: Health Bar
+    @Author: Joseph (BreakLoop)
+    @Description: Displays and animates a vehicle health bar on the HUD, reacting to damage and healing events.
+]]
+
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local TweenService = game:GetService("TweenService")

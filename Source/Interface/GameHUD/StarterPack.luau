@@ -1,3 +1,9 @@
+--[[
+    @Title: Starter Pack Button
+    @Author: Joseph (BreakLoop)
+    @Description: Handles the HUD button that opens the starter pack purchase popup.
+]]
+
 local StarterPack = {}
 
 -- Dependencies

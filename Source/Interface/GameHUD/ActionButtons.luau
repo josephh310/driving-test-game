@@ -1,3 +1,9 @@
+--[[
+    @Title: Action Buttons
+    @Author: Joseph (BreakLoop)
+    @Description: Handles HUD action buttons for resetting the vehicle and toggling the troll shop.
+]]
+
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local ActionButtons = {}
 

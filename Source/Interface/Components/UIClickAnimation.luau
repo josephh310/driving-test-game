@@ -1,3 +1,9 @@
+--[[
+    @Title: UI Click Animation
+    @Author: Joseph (BreakLoop)
+    @Description: Shrinks a UI button on mouse-down and restores its size on mouse-up using tweened animations.
+]]
+
 -- Dependancies
 local TweenService = game:GetService("TweenService")
 local InterfaceUtils = require(script.Parent.Parent.Utilities)

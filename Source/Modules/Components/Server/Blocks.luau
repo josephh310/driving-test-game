@@ -1,3 +1,9 @@
+--[[
+    @Title: Blocks
+    @Author: Joseph (BreakLoop)
+    @Description: Creates an invisible hitbox over a block model that detects collisions and manages a respawn timer for toppled blocks.
+]]
+
 local DEFAULT_RESPAWN_TIME = 5
 
 return function(blocks: Model)

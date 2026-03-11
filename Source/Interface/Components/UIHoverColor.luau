@@ -1,3 +1,9 @@
+--[[
+    @Title: UI Hover Color
+    @Author: Joseph (BreakLoop)
+    @Description: Darkens a UI element's color on mouse hover and restores it on mouse leave using tweened animations.
+]]
+
 -- Dependencies
 local TweenService = game:GetService("TweenService")
 local InterfaceUtils = require(script.Parent.Parent.Utilities)

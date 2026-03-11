@@ -1,3 +1,9 @@
+--[[
+    @Title: Skip Service (Server)
+    @Author: Joseph (BreakLoop)
+    @Description: Manages stage skipping, awarding timed skip tokens to players and handling skip consumption and stage navigation.
+]]
+
 local SkipServiceServer = {}
 
 -- Dependencies

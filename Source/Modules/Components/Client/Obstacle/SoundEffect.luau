@@ -1,3 +1,9 @@
+--[[
+    @Title: Obstacle Sound Effect
+    @Author: Joseph (BreakLoop)
+    @Description: Plays a collision sound effect from the obstacle when hit, using either a custom or randomly selected impact sound.
+]]
+
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local PlaySoundFromPart = require(ReplicatedStorage.Shared.Modules.Utilities.PlaySoundFromPart)
 local HitSounds = ReplicatedStorage.Assets.SoundEffects.ImpactSounds:GetChildren()

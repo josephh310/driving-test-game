@@ -1,3 +1,9 @@
+--[[
+    @Title: Open On Touch
+    @Author: Joseph (BreakLoop)
+    @Description: Sets an "Activated" BoolValue to true when the local player touches the hitbox, used to trigger gate openings.
+]]
+
 local Players = game:GetService("Players")
 
 return function(hitbox: BasePart)

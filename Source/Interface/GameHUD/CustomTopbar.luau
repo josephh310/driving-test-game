@@ -1,3 +1,9 @@
+--[[
+    @Title: Custom Topbar
+    @Author: Joseph (BreakLoop)
+    @Description: Adds a custom topbar icon using TopbarPlus that prompts players to invite friends.
+]]
+
 local CustomTopbar = {}
 
 -- Dependencies

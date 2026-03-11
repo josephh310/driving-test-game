@@ -1,3 +1,9 @@
+--[[
+    @Title: Moving Part
+    @Author: Joseph (BreakLoop)
+    @Description: Tweens a part back and forth between its original position and an offset using a looping reversing tween.
+]]
+
 local TweenService = game:GetService("TweenService")
 
 local DEFAULT_TRANSITION_TIME = 1

@@ -1,3 +1,9 @@
+--[[
+    @Title: Grid Buttons
+    @Author: Joseph (BreakLoop)
+    @Description: Manages the HUD button grid for opening the shop, inventory, and using or purchasing skips.
+]]
+
 local GridButtons = {}
 
 -- Dependencies

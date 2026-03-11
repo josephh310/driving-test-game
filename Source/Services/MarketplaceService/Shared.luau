@@ -1,3 +1,9 @@
+--[[
+    @Title: Marketplace Service (Shared)
+    @Author: Joseph (BreakLoop)
+    @Description: Shared marketplace configuration defining product IDs, purchase types, intent types, and error codes.
+]]
+
 local MarketplaceShared = {}
 
 MarketplaceShared.intent_types = {

@@ -1,3 +1,9 @@
+--[[
+    @Title: Play Sound From Part
+    @Author: Joseph (BreakLoop)
+    @Description: Clones a sound instance and plays it from a given part, automatically cleaning it up after playback.
+]]
+
 local Debris = game:GetService("Debris")
 
 return function(part: BasePart, sound: Sound)

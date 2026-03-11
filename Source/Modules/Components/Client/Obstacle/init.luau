@@ -1,3 +1,9 @@
+--[[
+    @Title: Obstacle
+    @Author: Joseph (BreakLoop)
+    @Description: Core obstacle component that detects vehicle collisions and dispatches configurable effects such as damage, impulse, sound, slippery, teleport, and dummy.
+]]
+
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local DummyEffect = require(script.Dummy)

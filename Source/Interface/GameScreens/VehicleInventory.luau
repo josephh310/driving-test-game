@@ -1,3 +1,9 @@
+--[[
+    @Title: Vehicle Inventory
+    @Author: Joseph (BreakLoop)
+    @Description: Displays the player's vehicle inventory, allowing them to equip vehicles and access customisation options.
+]]
+
 local VehicleInventory = {}
 
 -- Dependencies

@@ -1,3 +1,9 @@
+--[[
+    @Title: Damage Aura
+    @Author: Joseph (BreakLoop)
+    @Description: Displays a screen overlay aura effect that flashes proportionally to the damage taken by the player.
+]]
+
 local DamageAura = {}
 
 -- Dependencies

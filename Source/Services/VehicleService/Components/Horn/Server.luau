@@ -1,3 +1,9 @@
+--[[
+    @Title: Horn Component (Server)
+    @Author: 010DevX101
+    @Description: Handles server-side horn logic, cloning the horn sound onto the vehicle and playing it with a cooldown on honk requests.
+]]
+
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Networker = require(ReplicatedStorage.Packages.Networker)
 local Vehicles = workspace.Vehicles

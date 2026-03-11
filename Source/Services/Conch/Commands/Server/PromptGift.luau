@@ -1,3 +1,9 @@
+--[[
+    @Title: Prompt Gift Command
+    @Author: Joseph (BreakLoop)
+    @Description: Admin command that prompts a gift purchase from one player to another for a specified product.
+]]
+
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local ServerScriptService = game:GetService("ServerScriptService")
 local MarketplaceServiceServer = require(ServerScriptService.Services.MarketplaceService.MarketplaceServiceServer)

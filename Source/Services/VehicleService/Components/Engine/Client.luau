@@ -1,3 +1,9 @@
+--[[
+    @Title: Engine Component (Client)
+    @Author: 010DevX101
+    @Description: Client-side vehicle engine that updates steering and throttle each frame using cylindrical constraints and wheel attachments.
+]]
+
 local RunService = game:GetService("RunService")
 
 local Engine = {}

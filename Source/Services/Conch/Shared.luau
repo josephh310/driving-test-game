@@ -1,3 +1,9 @@
+--[[
+    @Title: Conch Admin (Shared)
+    @Author: Joseph (BreakLoop)
+    @Description: Shared configuration for the admin system, defining permissions, roles, user assignments, and command registration utilities.
+]]
+
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Conch = require(ReplicatedStorage.Packages.Conch)
 local ConchShared = {}

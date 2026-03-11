@@ -1,3 +1,9 @@
+--[[
+    @Title: Conch Admin (Server)
+    @Author: Joseph (BreakLoop)
+    @Description: Server-side admin system that registers roles, assigns permissions to players, and loads server commands.
+]]
+
 local ConchServer = {}
 
 -- Dependencies

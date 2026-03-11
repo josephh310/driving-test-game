@@ -1,3 +1,9 @@
+--[[
+    @Title: Spawn Vehicle Command
+    @Author: Joseph (BreakLoop)
+    @Description: Admin command that spawns a specified vehicle for a target player.
+]]
+
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local ServerScriptService = game:GetService("ServerScriptService")
 local Conch = require(ReplicatedStorage.Packages.Conch)

@@ -1,3 +1,9 @@
+--[[
+    @Title: UI Click Color
+    @Author: Joseph (BreakLoop)
+    @Description: Darkens a UI button's color on mouse-down and restores it on mouse-up using tweened animations.
+]]
+
 --Dependancies
 local TweenService = game:GetService("TweenService")
 local InterfaceUtils = require(script.Parent.Parent.Utilities)

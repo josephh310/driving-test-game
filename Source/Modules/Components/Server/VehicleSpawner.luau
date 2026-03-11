@@ -1,3 +1,9 @@
+--[[
+    @Title: Vehicle Spawner
+    @Author: Joseph (BreakLoop)
+    @Description: Periodically spawns random dummy vehicles that tween from a start point to an end point, simulating traffic.
+]]
+
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local TweenService = game:GetService("TweenService")
 local Vehicles = ReplicatedStorage.Assets.DummyVehicles:GetChildren()

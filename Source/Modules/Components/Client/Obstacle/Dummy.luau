@@ -1,3 +1,9 @@
+--[[
+    @Title: Obstacle Dummy
+    @Author: Joseph (BreakLoop)
+    @Description: Creates an unanchored physics clone of the obstacle that gets knocked around by the vehicle, then restores the original after a delay.
+]]
+
 local DEFAULT_EFFECT_DURATION = 10
 local DEFAULT_DUMMY_IMPULSE_STRENGTH = 5
 local DEFAULT_DUMMY_IMPULSE_MODE = "Normal" -- "Normal" applies impulse to the dummy leader, "ImpulseAll" applies impulse to all parts in the dummy

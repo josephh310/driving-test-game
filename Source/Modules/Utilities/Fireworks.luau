@@ -1,3 +1,9 @@
+--[[
+    @Title: Fireworks
+    @Author: Joseph (BreakLoop)
+    @Description: Spawns and animates firework particle effects with randomised colors, flight paths, and explosion bursts.
+]]
+
 local FireworkSystem = {}
 
 --// Services

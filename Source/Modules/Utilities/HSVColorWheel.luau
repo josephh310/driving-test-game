@@ -1,3 +1,9 @@
+--[[
+    @Title: HSV Color Wheel
+    @Author: Joseph (BreakLoop)
+    @Description: Generates an HSV color wheel as an EditableImage and provides a method to sample colors at a given position.
+]]
+
 local HSVColorWheel = {}
 
 -- Dependencies

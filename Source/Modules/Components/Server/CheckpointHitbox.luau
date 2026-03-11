@@ -1,3 +1,9 @@
+--[[
+    @Title: Checkpoint Hitbox (Server)
+    @Author: Joseph (BreakLoop)
+    @Description: Detects when a player's vehicle reaches a checkpoint, heals the player, and advances their stage progress in the data store.
+]]
+
 local Players = game:GetService("Players")
 local ServerScriptService = game:GetService("ServerScriptService")
 local DataServiceServer = require(ServerScriptService.Services.DataService.DataServiceServer)

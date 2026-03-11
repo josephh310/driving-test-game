@@ -1,3 +1,9 @@
+--[[
+    @Title: Conch Admin (Client)
+    @Author: Joseph (BreakLoop)
+    @Description: Client-side admin system that mounts the admin panel UI, creates the topbar toggle, and loads client commands.
+]]
+
 local ConchClient = {}
 
 -- Dependencies

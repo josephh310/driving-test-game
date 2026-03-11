@@ -1,3 +1,9 @@
+--[[
+    @Title: Vehicle Utilities
+    @Author: 010DevX101
+    @Description: Utility functions for vehicle management, including spawn CFrame selection and player-vehicle lookups.
+]]
+
 local Players = game:GetService("Players")
 local VehicleUtils = {}
 

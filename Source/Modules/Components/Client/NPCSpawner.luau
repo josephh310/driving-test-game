@@ -1,3 +1,9 @@
+--[[
+    @Title: NPC Spawner
+    @Author: Joseph (BreakLoop)
+    @Description: Periodically spawns random NPC characters that walk from a start point to an end point, then despawn after reaching their destination.
+]]
+
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local NPCs = ReplicatedStorage.Assets.NPCs
 

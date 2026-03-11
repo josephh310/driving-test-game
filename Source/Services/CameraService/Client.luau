@@ -1,3 +1,9 @@
+--[[
+    @Title: Camera Service (Client)
+    @Author: Joseph (BreakLoop)
+    @Description: Handles client-side camera shake effects using presets from RbxCameraShaker.
+]]
+
 local CameraServiceClient = {}
 
 -- Dependencies

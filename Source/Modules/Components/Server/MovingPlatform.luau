@@ -1,3 +1,9 @@
+--[[
+    @Title: Moving Platform
+    @Author: Joseph (BreakLoop)
+    @Description: Moves a part back and forth between its original position and an offset using physics-based alignment constraints.
+]]
+
 local TweenService = game:GetService("TweenService")
 
 local DEFAULT_TRANSITION_TIME = 1

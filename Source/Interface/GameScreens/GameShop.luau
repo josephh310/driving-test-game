@@ -1,3 +1,9 @@
+--[[
+    @Title: Game Shop
+    @Author: Joseph (BreakLoop)
+    @Description: Renders the in-game shop screen with gamepass listings and skip purchase options, supporting buy and gift actions.
+]]
+
 local GameShop = {}
 
 -- Dependencies

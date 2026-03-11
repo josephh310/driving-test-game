@@ -1,3 +1,9 @@
+--[[
+    @Title: Horn Component (Client)
+    @Author: 010DevX101
+    @Description: Binds the horn input action to the H key and touch button, firing a network event to honk the vehicle horn.
+]]
+
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local ContextActionService = game:GetService("ContextActionService")
 

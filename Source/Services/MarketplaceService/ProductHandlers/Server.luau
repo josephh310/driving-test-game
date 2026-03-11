@@ -1,3 +1,9 @@
+--[[
+    @Title: Product Handlers (Server)
+    @Author: Joseph (BreakLoop)
+    @Description: Server-side product receipt handlers that grant skip tokens to players upon purchase.
+]]
+
 -- Dependencies
 local ServerScriptService = game:GetService("ServerScriptService")
 local DataServiceServer = require(ServerScriptService.Services.DataService.DataServiceServer)

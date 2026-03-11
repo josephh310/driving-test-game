@@ -1,3 +1,9 @@
+--[[
+    @Title: Darkness Zone
+    @Author: Joseph (BreakLoop)
+    @Description: Transitions the lighting to nighttime when the local player enters a zone and restores it when they leave.
+]]
+
 local Lighting = game:GetService("Lighting")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local TweenService = game:GetService("TweenService")

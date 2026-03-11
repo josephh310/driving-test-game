@@ -1,3 +1,9 @@
+--[[
+    @Title: Checkpoint Hitbox (Client)
+    @Author: Joseph (BreakLoop)
+    @Description: Manages checkpoint gate visuals and unlock criteria, toggling collision and color based on observed conditions and firing fireworks on unlock.
+]]
+
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Observers = require(ReplicatedStorage.Packages.Observers)

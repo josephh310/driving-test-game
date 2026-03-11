@@ -1,3 +1,9 @@
+--[[
+    @Title: Train Spawner
+    @Author: Joseph (BreakLoop)
+    @Description: Repeatedly spawns a train at a start point and tweens it to an end point with a sound effect on each pass.
+]]
+
 local TweenService = game:GetService("TweenService")
 
 return function(model: Model)

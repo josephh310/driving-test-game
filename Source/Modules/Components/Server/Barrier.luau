@@ -1,3 +1,9 @@
+--[[
+    @Title: Barrier
+    @Author: Joseph (BreakLoop)
+    @Description: Controls a hinged barrier gate that opens and closes by observing the "Opened" attribute and adjusting the hinge target angle.
+]]
+
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Observers = require(ReplicatedStorage.Packages.Observers)
 

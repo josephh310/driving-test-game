@@ -1,3 +1,9 @@
+--[[
+    @Title: Kick Command
+    @Author: Joseph (BreakLoop)
+    @Description: Admin command that kicks a specified player from the server with a given reason.
+]]
+
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Conch = require(ReplicatedStorage.Packages.Conch)
 local ConchShared = require(ReplicatedStorage.Shared.Services.Conch.ConchShared)

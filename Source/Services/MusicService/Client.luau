@@ -1,3 +1,9 @@
+--[[
+    @Title: Music Controller (Client)
+    @Author: Joseph (BreakLoop)
+    @Description: Manages the client-side music player with queue navigation, play/pause controls, and a topbar UI.
+]]
+
 -- Dependancies
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Signal = require(ReplicatedStorage.Packages.Signal)

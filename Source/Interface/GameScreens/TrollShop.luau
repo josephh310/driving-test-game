@@ -1,3 +1,9 @@
+--[[
+    @Title: Troll Shop
+    @Author: Joseph (BreakLoop)
+    @Description: Manages the troll shop screen visibility for purchasing troll items.
+]]
+
 local TrollShop = {}
 
 -- Dependancies

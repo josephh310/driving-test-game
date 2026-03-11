@@ -1,3 +1,9 @@
+--[[
+    @Title: Vehicle Types
+    @Author: 010DevX101
+    @Description: Defines vehicle data types and the registry of all available vehicles with their models, health, and component configurations.
+]]
+
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Assets = ReplicatedStorage.Assets
 local Vehicles = Assets.Vehicles

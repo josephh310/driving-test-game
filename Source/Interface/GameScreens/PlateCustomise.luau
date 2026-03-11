@@ -1,3 +1,9 @@
+--[[
+    @Title: Plate Customise
+    @Author: Joseph (BreakLoop)
+    @Description: Allows players to enter and submit custom text for their vehicle license plate.
+]]
+
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local PlateCustomise = {}
 

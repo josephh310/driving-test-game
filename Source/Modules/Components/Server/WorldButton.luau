@@ -1,3 +1,9 @@
+--[[
+    @Title: World Button
+    @Author: Joseph (BreakLoop)
+    @Description: A physical button that animates when pressed, executes an OnPressed callback, and resets after a configurable delay.
+]]
+
 local TweenService = game:GetService("TweenService")
 local DEFAULT_UNPRESS_DELAY = 1
 

@@ -1,3 +1,9 @@
+--[[
+    @Title: Camera Service (Server)
+    @Author: Joseph (BreakLoop)
+    @Description: Provides server-side camera control, allowing the server to trigger camera shake effects on specific players.
+]]
+
 local CameraServiceServer = {}
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Networker = require(ReplicatedStorage.Packages.Networker)

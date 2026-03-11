@@ -1,3 +1,9 @@
+--[[
+    @Title: Obstacle Damage
+    @Author: Joseph (BreakLoop)
+    @Description: Deals a configurable amount of damage to the local player's humanoid when their vehicle collides with an obstacle.
+]]
+
 local Players = game:GetService("Players")
 local Player = Players.LocalPlayer
 

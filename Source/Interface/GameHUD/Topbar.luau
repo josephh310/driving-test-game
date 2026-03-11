@@ -1,3 +1,9 @@
+--[[
+    @Title: Topbar
+    @Author: Joseph (BreakLoop)
+    @Description: Controls the HUD topbar displaying the current stage and providing navigation buttons for stage progression.
+]]
+
 local Topbar = {}
 
 -- Dependencies

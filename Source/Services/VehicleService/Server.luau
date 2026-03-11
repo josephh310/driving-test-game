@@ -1,6 +1,6 @@
 --[[
 	@Title: VehicleService Server
-    @Author: Joseph (BreakLoop), heavily modified by 010DevX101
+    @Author: 010DevX101
 	@Description: Handles the vehicle system on the server
 ]]
 

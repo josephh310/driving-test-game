@@ -1,3 +1,9 @@
+--[[
+    @Title: Starter Pack Popup
+    @Author: Joseph (BreakLoop)
+    @Description: Manages the starter pack popup screen, allowing players to purchase or gift the starter pack.
+]]
+
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local StarterPack = {}
 

@@ -1,3 +1,9 @@
+--[[
+    @Title: Proximity Prompt
+    @Author: Joseph (BreakLoop)
+    @Description: Handles a proximity prompt interaction that disables itself and sets an activated BoolValue to true when triggered.
+]]
+
 return function(part: BasePart)
 	-- Instances
 	local prompt = part:FindFirstChildOfClass("ProximityPrompt")

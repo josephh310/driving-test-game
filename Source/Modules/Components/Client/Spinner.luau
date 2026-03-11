@@ -1,3 +1,9 @@
+--[[
+    @Title: Spinner
+    @Author: Joseph (BreakLoop)
+    @Description: Continuously rotates a model's primary part each physics step using a configurable angular velocity.
+]]
+
 local RunService = game:GetService("RunService")
 local DEFAULT_SPINNER_VELOCITY = Vector3.new(1, 0, 0)
 
