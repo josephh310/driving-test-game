@@ -13,6 +13,7 @@ local ServerScriptService = game:GetService("ServerScriptService")
 local TextService = game:GetService("TextService")
 
 local Networker = require(ReplicatedStorage.Packages.Networker)
+local DeathAnimation = require(ReplicatedStorage.Shared.Modules.Utilities.DeathAnimation)
 local VehicleServiceUtils = require(ReplicatedStorage.Shared.Services.VehicleService.VehicleServiceUtils)
 local VehicleTypes = require(ReplicatedStorage.Shared.Services.VehicleService.VehicleTypes)
 local DataServiceServer = require(ServerScriptService.Services.DataService.DataServiceServer)
@@ -183,10 +184,10 @@ function VehicleServiceServer._destroy_vehicle(self: VehicleServiceServer, playe
 		return
 	end
 
-	-- Destroy the vehicle and call cleanup functions
-	vehicle_model:Destroy()
+	-- Signal to the client to clean
 	self.networker:fire(player, "cleanup")
 	self:_cleanup(player)
+	DeathAnimation(vehicle_model)
 end
 
 function VehicleServiceServer._spawn_vehicle(

@@ -31,17 +31,16 @@ return function(vehicle: Model)
 		end
 	end
 
-	-- Disable constraints and welds so parts fly apart
-	for _, descendant in vehicle:GetDescendants() do
-		if descendant:IsA("Constraint") or descendant:IsA("JointInstance") then
-			descendant:Destroy()
-		end
+	-- Disable constraints so parts fly apart
+	for _, descendant in vehicle:QueryDescendants("WeldConstraint") do
+		descendant:Destroy()
 	end
 
 	-- Unanchor all parts so physics can take over
+	-- Disable massless so that the explosion is realistic
 	for _, part in parts do
 		part.Anchored = false
-		part.CanCollide = true
+		part.Massless = false
 	end
 
 	-- Flash the vehicle white briefly before the explosion
