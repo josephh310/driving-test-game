@@ -16,10 +16,6 @@ export type VehicleUtils = typeof(VehicleUtils)
 function VehicleUtils.get_spawn_cframe_for_stage(self: VehicleUtils, stage: number)
 	-- Get the stage object
 	local Stage = Stages:FindFirstChild(tostring(stage))
-	if not Stage or not Stage:IsA("Folder") then
-		warn(`Invalid stage {stage}!`)
-		return
-	end
 
 	-- Get the spawns from the stage's folder
 	local Spawns = Stage:FindFirstChild("Spawns")
