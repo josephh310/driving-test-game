@@ -24,7 +24,6 @@ return function(button: Model)
 	end
 
 	-- State
-	local button_down = false
 	local unpressed = nil :: () -> ()
 
 	-- Toggle function
@@ -38,12 +37,12 @@ return function(button: Model)
 				unpressed()
 			end
 		end
-		button_down = is_down
+		button:SetAttribute("ButtonDown", is_down)
 	end
 
 	-- Touched connections
 	local touched_connection = button_part.Touched:Connect(function(hit: BasePart)
-		if button_down then
+		if button:GetAttribute("ButtonDown") then
 			return
 		end
 		toggle_button(true)
