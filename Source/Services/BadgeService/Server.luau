@@ -4,12 +4,13 @@
     @Description: Awards badges to players and tracks owned badges in the player's data store.
 ]]
 
-local BadgeServiceServer = {}
+local BadgeServiceServer = {
+	_connections = {},
+}
 
 -- Dependencies
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local Players = game:GetService("Players")
 local ServerScriptService = game:GetService("ServerScriptService")
-local Networker = require(ReplicatedStorage.Packages.Networker)
 local DataServiceServer = require(ServerScriptService.Services.DataService.DataServiceServer)
 local BadgeService = game:GetService("BadgeService")
 
@@ -20,7 +21,16 @@ BadgeServiceServer.badges = {
 	stage_30 = 3736276348916623,
 	stage_40 = 2807234818059701,
 	stage_50 = 3247666506209402,
-	winning = 1298548968862929,
+	winner = 1298548968862929,
+}
+
+-- Stage thresholds mapped to badge IDs
+BadgeServiceServer.stage_badges = {
+	{ stage = 10, badge = BadgeServiceServer.badges.stage_10 },
+	{ stage = 20, badge = BadgeServiceServer.badges.stage_20 },
+	{ stage = 30, badge = BadgeServiceServer.badges.stage_30 },
+	{ stage = 40, badge = BadgeServiceServer.badges.stage_40 },
+	{ stage = 50, badge = BadgeServiceServer.badges.stage_50 },
 }
 
 -- Types
@@ -37,7 +47,6 @@ function BadgeServiceServer.award_badge(self: BadgeServiceServer, player: Player
 	-- Reject if already rewarded
 	local owned_badges = DataServiceServer:get_value(player, { "badges" })
 	if table.find(owned_badges, badge_id) then
-		warn(`{player.Name} already has badge {badge_id}`)
 		return
 	end
 
@@ -57,8 +66,55 @@ function BadgeServiceServer.award_badge(self: BadgeServiceServer, player: Player
 	end)
 end
 
+function BadgeServiceServer._check_stage_badges(self: BadgeServiceServer, player: Player, best_stage: number)
+	for _, entry in self.stage_badges do
+		if best_stage >= entry.stage then
+			self:award_badge(player, entry.badge)
+		end
+	end
+end
+
+function BadgeServiceServer._player_added(self: BadgeServiceServer, player: Player)
+	-- Wait for the player's data to load
+	local profile = DataServiceServer:get_profile(player)
+	if not profile then
+		return
+	end
+
+	-- Award welcome badge
+	self:award_badge(player, self.badges.welcome)
+
+	-- Listen to best_stage leaderstat changes
+	local leaderstats = player:WaitForChild("leaderstats")
+	local best_stage_value = leaderstats:WaitForChild("Best Stage")
+	self._connections[player] = best_stage_value.Changed:Connect(function(new_value: number)
+		self:_check_stage_badges(player, new_value)
+	end)
+end
+
+function BadgeServiceServer._player_removed(self: BadgeServiceServer, player: Player)
+	local connection = self._connections[player]
+	if connection then
+		connection:Disconnect()
+		self._connections[player] = nil
+	end
+end
+
 function BadgeServiceServer.init(self: BadgeServiceServer)
-	self.networker = Networker.server.new("BadgeService")
+	-- Listen for players joining and leaving
+	for _, player in Players:GetPlayers() do
+		task.defer(function()
+			self:_player_added(player)
+		end)
+	end
+
+	Players.PlayerAdded:Connect(function(player: Player)
+		self:_player_added(player)
+	end)
+
+	Players.PlayerRemoving:Connect(function(player: Player)
+		self:_player_removed(player)
+	end)
 end
 
 return BadgeServiceServer
