@@ -21,6 +21,10 @@ newAtmosphere.Haze = 10
 newAtmosphere.Parent = Lighting
 
 return function(zone: BasePart)
+	-- Zone is semi-transparent at edit time for clarity.
+	-- We should make the zone invisible at runtime.
+	zone.Transparency = 1
+
 	-- Attributes, attached to zone objext
 	local transitionTime = zone:GetAttribute("TransitionTime") or DEFAULT_TRANSITION_TIME
 	local fogDensity = zone:GetAttribute("FogDensity") or DEFAULT_DENSITY
