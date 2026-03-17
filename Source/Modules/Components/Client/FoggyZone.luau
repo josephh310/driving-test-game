@@ -10,13 +10,13 @@ local TweenService = game:GetService("TweenService")
 local ZonePlus = require(ReplicatedStorage.Packages.ZonePlus)
 
 local DEFAULT_TRANSITION_TIME = 1
-local DEFAULT_DENSITY = 0.7
+local DEFAULT_DENSITY = 0.8
 
 local newAtmosphere = Instance.new("Atmosphere")
 newAtmosphere.Density = 0
 newAtmosphere.Color = Color3.new(1, 1, 1)
 newAtmosphere.Decay = Color3.new(1, 1, 1)
-newAtmosphere.Glare = 0.05
+newAtmosphere.Glare = 0
 newAtmosphere.Haze = 10
 newAtmosphere.Parent = Lighting
 
