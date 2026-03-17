@@ -21,6 +21,6 @@ return {
 		return player, vehicle
 	end,
 	callback = function(player, vehicle)
-		VehicleServiceServer:spawn_vehicle(player, vehicle)
+		VehicleServiceServer:_spawn_vehicle(player, nil, vehicle)
 	end,
 }
