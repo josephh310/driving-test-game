@@ -16,7 +16,7 @@ local newAtmosphere = Instance.new("Atmosphere")
 newAtmosphere.Density = 0
 newAtmosphere.Color = Color3.new(1, 1, 1)
 newAtmosphere.Decay = Color3.new(1, 1, 1)
-newAtmosphere.Glare = 3
+newAtmosphere.Glare = 0.05
 newAtmosphere.Haze = 10
 newAtmosphere.Parent = Lighting
 
