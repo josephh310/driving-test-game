@@ -147,6 +147,7 @@ function VehicleServiceServer._set_plate(self: VehicleServiceServer, player: Pla
 	end
 	local plate_text = base:FindFirstChild("SurfaceGui"):FindFirstChild("PlateText")
 	if not plate_text or not plate_text:IsA("TextLabel") then
+        warn("License plate does not have a plate_text label!")
 		return
 	end
 	plate_text.Text = text
@@ -167,7 +168,8 @@ end
 function VehicleServiceServer._spawn_vehicle_at_stage(self: VehicleServiceServer, player: Player, stage: number)
 	-- Player should not have a vehicle at stage 0 (the intro)
 	if stage == 0 then
-		return
+        warn("Player is in stage 0")
+        return
 	end
 
 	-- Get a free position to spawn the vehicle at
@@ -177,7 +179,9 @@ function VehicleServiceServer._spawn_vehicle_at_stage(self: VehicleServiceServer
 	self:_spawn_vehicle(player, selected_spawn_cframe)
 end
 
-function VehicleServiceServer._destroy_vehicle(self: VehicleServiceServer, player: Player, vehicle_model: Model?)
+function VehicleServiceServer._destroy_vehicle(self: VehicleServiceServer, player: Player, vehicle_model: Model?, animate: boolean?)
+    animate = if animate ~= nil then animate else true
+    
 	-- Get the vehicle model if not provided to the function
 	vehicle_model = vehicle_model or SpawnedVehicles:FindFirstChild(player.Name)
 	if not vehicle_model or not vehicle_model:IsA("Model") then
@@ -187,7 +191,12 @@ function VehicleServiceServer._destroy_vehicle(self: VehicleServiceServer, playe
 	-- Signal to the client to clean
 	self.networker:fire(player, "cleanup")
 	self:_cleanup(player)
-	DeathAnimation(vehicle_model)
+    
+    if animate then
+        DeathAnimation(vehicle_model)
+    else
+        vehicle_model:Destroy()
+    end
 end
 
 function VehicleServiceServer._spawn_vehicle(
@@ -198,12 +207,15 @@ function VehicleServiceServer._spawn_vehicle(
 )
 	-- Grab currently equipped vehicle
 	local equipped_vehicle = vehicle or DataServiceServer:get_value(player, { "equipped_vehicle" })
-
-	-- If there is already a vehicle spawned by the player, destroy it
+    
+    -- If there is already a vehicle spawned by the player, destroy it
 	local spawned_vehicle = SpawnedVehicles:FindFirstChild(player.Name)
 	if spawned_vehicle and spawned_vehicle:IsA("Model") then
-		self:_destroy_vehicle(player, spawned_vehicle)
-	end
+        self:_destroy_vehicle(player, spawned_vehicle, false)
+        repeat
+            task.wait()
+        until spawned_vehicle.Parent == nil
+    end
 
 	-- Get vehicle-specific data
 	local vehicle_data = VehicleTypes[equipped_vehicle] :: VehicleTypes.VehicleData
@@ -220,6 +232,10 @@ function VehicleServiceServer._spawn_vehicle(
 		error(`Unable to spawn vehicle for {player.Name} - {reason}`)
 		return
 	end
+
+    repeat
+        task.wait()
+    until new_vehicle.Parent == SpawnedVehicles
 
 	-- Set the player's license plate
 	local plate = DataServiceServer:get_value(player, { "plate" })
@@ -238,6 +254,7 @@ function VehicleServiceServer._spawn_vehicle(
 	local character = player.Character or player.CharacterAdded:Wait()
 	local humanoid = character:FindFirstChildWhichIsA("Humanoid")
 	if not humanoid then
+        warn("Player does not have a Humanoid, cannot spawn vehicle")
 		return
 	end
 
@@ -350,7 +367,7 @@ function VehicleServiceServer.request_equip_vehicle(
 		return SUCCESS_MESSAGE
 	end
 	local stage = DataServiceServer:get_value(player, { "current_stage" })
-	self:_spawn_vehicle_at_stage(player, stage)
+    self:_spawn_vehicle_at_stage(player, stage)
 	return SUCCESS_MESSAGE
 end
 
@@ -367,9 +384,7 @@ function VehicleServiceServer.reset_vehicle(self: VehicleServiceServer, player: 
 	-- Completely regenerate the vehicle if hard_reset is true
 	-- Else teleport back to the start of the stage
 	if hard_reset == true then
-		self:_destroy_vehicle(player, vehicle_model)
-		player:LoadCharacterAsync()
-		self:_spawn_vehicle_at_stage(player, stage)
+        self:_spawn_vehicle_at_stage(player, stage)
 	else
 		local _, vehicle_size = vehicle_model:GetBoundingBox()
 		local spawn_offset = vehicle_size.Y / 2
