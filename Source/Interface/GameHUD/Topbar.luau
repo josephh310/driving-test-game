@@ -13,6 +13,9 @@ local DataServiceClient = require(ReplicatedStorage.Shared.Services.DataService.
 local MarketplaceServiceClient = require(ReplicatedStorage.Shared.Services.MarketplaceService.MarketplaceServiceClient)
 local SkipServiceClient = require(ReplicatedStorage.Shared.Services.SkipService.SkipServiceClient)
 local InterfaceUtils = require(script.Parent.Parent.Utilities)
+local VehicleServiceClient = require(ReplicatedStorage.Shared.Services.VehicleService.VehicleServiceClient)
+
+local MAX_STAGE = VehicleServiceClient.networker:fetch("get_max_stage")
 
 -- Constants
 local Interface = InterfaceUtils.get_screen_gui("Interface")
@@ -43,6 +46,10 @@ function Topbar._previous_stage_clicked()
 end
 
 function Topbar._skip_all_clicked()
+    local data = DataServiceClient.get_data()
+    if data.best_stage == MAX_STAGE then
+        return
+    end
 	MarketplaceServiceClient:purchase_product("skip_to_end")
 end
 
