@@ -19,8 +19,13 @@ local VehicleTypes = require(ReplicatedStorage.Shared.Services.VehicleService.Ve
 local DataServiceServer = require(ServerScriptService.Services.DataService.DataServiceServer)
 local HornServer = require(ServerScriptService.Services.VehicleService.Components.Horn.HornServer)
 
+local Stages = workspace.Map.Stages
 local SpawnedVehicles = workspace.Vehicles
 local Cleanup = {}
+
+local MAX_STAGE = #Stages:GetChildren()
+
+VehicleServiceServer.max_stage = MAX_STAGE
 
 -- Types
 export type VehicleServiceServer = typeof(VehicleServiceServer)
@@ -393,12 +398,17 @@ function VehicleServiceServer.reset_vehicle(self: VehicleServiceServer, player: 
 	end
 end
 
+function VehicleServiceServer.get_max_stage(): number
+    return MAX_STAGE
+end
+
 function VehicleServiceServer.init(self: VehicleServiceServer)
 	self.networker = Networker.server.new("VehicleService", self, {
 		self.request_equip_vehicle,
 		self.reset_vehicle,
 		self.request_set_plate,
 		self.request_customise_color,
+        self.get_max_stage
 	})
 
 	local function player_added(player: Player)

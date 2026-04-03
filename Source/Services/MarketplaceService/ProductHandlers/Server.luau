@@ -5,11 +5,9 @@
 ]]
 
 -- Dependencies
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local ServerScriptService = game:GetService("ServerScriptService")
 local DataServiceServer = require(ServerScriptService.Services.DataService.DataServiceServer)
 local VehicleServiceServer = require(ServerScriptService.Services.VehicleService.VehicleServiceServer)
-local VehicleServiceUtils = require(ReplicatedStorage.Shared.Services.VehicleService.VehicleServiceUtils)
 
 -- Functions
 local function add_skips(num_skips: number)
@@ -23,7 +21,7 @@ end
 local function skip_to_end()
     return function(player: Player)
 		DataServiceServer:apply_change(player, { "best_stage" }, function(current_best: number)
-            local max_stage = VehicleServiceUtils.get_max_stage()
+            local max_stage = VehicleServiceServer.max_stage
 			DataServiceServer:set_value(player, { "current_stage" }, max_stage)
 			return max_stage
 		end)

@@ -14,7 +14,6 @@ local Networker = require(ReplicatedStorage.Packages.Networker)
 local SkipServiceShared = require(ReplicatedStorage.Shared.Services.SkipService.SkipServiceShared)
 local DataServiceServer = require(ServerScriptService.Services.DataService.DataServiceServer)
 local VehicleServiceServer = require(ServerScriptService.Services.VehicleService.VehicleServiceServer)
-local VehicleServiceUtils = require(ReplicatedStorage.Shared.Services.VehicleService.VehicleServiceUtils)
 
 -- Types
 export type SkipServiceServer = typeof(SkipServiceServer)
@@ -80,8 +79,7 @@ function SkipServiceServer.use_skip(self: SkipServiceServer, player: Player)
 			-- Increment best stage
 			local new_stage = current_best + 1
 
-            local max_stage = VehicleServiceUtils.get_max_stage()
-            if new_stage > max_stage then
+            if new_stage > VehicleServiceServer.max_stage then
                 return current_best
             end
 
