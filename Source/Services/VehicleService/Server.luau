@@ -45,7 +45,7 @@ function VehicleServiceServer._spawn_vehicle_model(
 ): Model?
 	-- Get the height of the vehicle model
 	local _, size = vehicle_model:GetBoundingBox()
-	local model_height = size.Y / 2
+	local model_height = (size.Y / 2) + 0.5
 
 	-- Get the CFrame of where the vehicle will be spawned
 	local player_character = player.Character or player.CharacterAdded:Wait()
@@ -53,6 +53,7 @@ function VehicleServiceServer._spawn_vehicle_model(
 
 	-- Create the new vehicle
 	local new_vehicle_model = vehicle_model:Clone()
+    new_vehicle_model:AddPersistentPlayer(player)
 	new_vehicle_model.Name = player.Name
 	new_vehicle_model.Parent = SpawnedVehicles
 
@@ -268,14 +269,21 @@ function VehicleServiceServer._spawn_vehicle(
 	humanoid.Health = vehicle_data.data.health
 
 	-- Detect when the player dies and clean up their vehicle
-	humanoid.Died:Connect(function()
+	humanoid.Died:Once(function()
 		self:_destroy_vehicle(player, new_vehicle)
 	end)
 
 	-- Initialize the vehicle
 	self:_setup_components(player, new_vehicle, equipped_vehicle)
 	self:_setup_collisions(new_vehicle)
-	self:_force_sit(player, new_vehicle)
+
+    --[[
+        After many years Roblox has yet to fix the issues with VehicleSeats, where a player is sitting but the controls do not detect steering nor throttling. An arbitrary delay is set to band-aid the issue
+        https://devforum.roblox.com/t/vehicleseat-unreliable-sometimes-doesnt-work/428992
+        https://devforum.roblox.com/t/vehicleseat-steerthrottle-values-sometimes-not-set-by-the-client-based-on-user-input-also-causing-other-weird-effects/3070136
+    --]]
+    local SIT_DELAY = 0.2
+    task.delay(SIT_DELAY, self._force_sit, self, player, new_vehicle)
 
 	-- Notify the player
 	self.networker:fire(player, "setup_vehicle", equipped_vehicle)
@@ -395,6 +403,7 @@ function VehicleServiceServer.reset_vehicle(self: VehicleServiceServer, player: 
 		local spawn_offset = vehicle_size.Y / 2
 		local free_spawn_cframe = VehicleServiceUtils:get_spawn_cframe_for_stage(stage)
 		vehicle_model:PivotTo(free_spawn_cframe + Vector3.new(0, spawn_offset, 0))
+        vehicle_model.PrimaryPart:SetNetworkOwner(player)
 	end
 end
 
@@ -413,7 +422,7 @@ function VehicleServiceServer.init(self: VehicleServiceServer)
 
 	local function player_added(player: Player)
 		Cleanup[player] = {}
-		player.CharacterAdded:Connect(function()
+		player.CharacterAppearanceLoaded:Connect(function()
 			local equipped_vehicle = DataServiceServer:get_value(player, { "equipped_vehicle" })
 			local stage = DataServiceServer:get_value(player, { "current_stage" })
 			if VehicleTypes[equipped_vehicle] ~= nil then
