@@ -388,7 +388,7 @@ function VehicleServiceServer.reset_vehicle(self: VehicleServiceServer, player: 
 	else
 		local _, vehicle_size = vehicle_model:GetBoundingBox()
 		local spawn_offset = vehicle_size.Y / 2
-		local free_spawn_cframe = self:_get_spawn_cframe_for_stage(stage)
+		local free_spawn_cframe = VehicleServiceUtils:get_spawn_cframe_for_stage(stage)
 		vehicle_model:PivotTo(free_spawn_cframe + Vector3.new(0, spawn_offset, 0))
 	end
 end

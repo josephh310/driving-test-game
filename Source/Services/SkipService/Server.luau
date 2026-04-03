@@ -14,6 +14,7 @@ local Networker = require(ReplicatedStorage.Packages.Networker)
 local SkipServiceShared = require(ReplicatedStorage.Shared.Services.SkipService.SkipServiceShared)
 local DataServiceServer = require(ServerScriptService.Services.DataService.DataServiceServer)
 local VehicleServiceServer = require(ServerScriptService.Services.VehicleService.VehicleServiceServer)
+local VehicleServiceUtils = require(ReplicatedStorage.Shared.Services.VehicleService.VehicleServiceUtils)
 
 -- Types
 export type SkipServiceServer = typeof(SkipServiceServer)
@@ -72,10 +73,19 @@ function SkipServiceServer.use_skip(self: SkipServiceServer, player: Player)
 			return current_skips
 		end
 
+        local success = false
+
 		-- The player has skips, consume one and increment their best stage
 		DataServiceServer:apply_change(player, { "best_stage" }, function(current_best: number)
 			-- Increment best stage
 			local new_stage = current_best + 1
+
+            local max_stage = VehicleServiceUtils.get_max_stage()
+            if new_stage > max_stage then
+                return current_best
+            end
+
+            success = true
 
 			-- Set the player's current stage to the new best stage
 			DataServiceServer:set_value(player, { "current_stage" }, new_stage)
@@ -84,9 +94,13 @@ function SkipServiceServer.use_skip(self: SkipServiceServer, player: Player)
 			return new_stage
 		end)
 
-		-- Tell the client to teleport the vehicle
-		VehicleServiceServer.networker:fire(player, "reset_vehicle_position")
+        if not success then
+            return current_skips
+        end
 
+        -- Reset the vehicle
+        VehicleServiceServer:reset_vehicle(player)
+		
 		-- Decrement the number of skips the player has
 		return current_skips - 1
 	end)
@@ -104,7 +118,7 @@ function SkipServiceServer.go_forewards(self: SkipServiceServer, player: Player)
 		return next_stage
 	end)
 	if changed then
-		VehicleServiceServer.networker:fire(player, "reset_vehicle_position")
+        VehicleServiceServer:reset_vehicle(player)
 	end
 end
 
@@ -118,7 +132,7 @@ function SkipServiceServer.go_backwards(self: SkipServiceServer, player: Player)
 		return current_value - 1
 	end)
 	if changed then
-		VehicleServiceServer.networker:fire(player, "reset_vehicle_position")
+		VehicleServiceServer:reset_vehicle(player)
 	end
 end
 

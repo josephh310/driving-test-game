@@ -65,4 +65,8 @@ function VehicleUtils.get_vehicle_from_player(self: VehicleUtils, player: Player
 	return vehicle
 end
 
+function VehicleUtils.get_max_stage(): number
+    return #Stages:GetChildren()
+end
+
 return VehicleUtils

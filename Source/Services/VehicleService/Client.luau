@@ -71,7 +71,7 @@ function VehicleServiceClient.reset_vehicle_position(self: VehicleServiceClient)
 	if not vehicle then
 		return
 	end
-	local current_stage = DataServiceClient:get_data().current_stage
+	local current_stage = DataServiceClient.get_data().current_stage
 	local new_cframe = VehicleServiceUtils:get_spawn_cframe_for_stage(current_stage)
 	vehicle:PivotTo(new_cframe)
 end
