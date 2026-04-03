@@ -19,8 +19,13 @@ local VehicleTypes = require(ReplicatedStorage.Shared.Services.VehicleService.Ve
 local DataServiceServer = require(ServerScriptService.Services.DataService.DataServiceServer)
 local HornServer = require(ServerScriptService.Services.VehicleService.Components.Horn.HornServer)
 
+local Stages = workspace.Map.Stages
 local SpawnedVehicles = workspace.Vehicles
 local Cleanup = {}
+
+local MAX_STAGE = #Stages:GetChildren()
+
+VehicleServiceServer.max_stage = MAX_STAGE
 
 -- Types
 export type VehicleServiceServer = typeof(VehicleServiceServer)
@@ -388,9 +393,13 @@ function VehicleServiceServer.reset_vehicle(self: VehicleServiceServer, player: 
 	else
 		local _, vehicle_size = vehicle_model:GetBoundingBox()
 		local spawn_offset = vehicle_size.Y / 2
-		local free_spawn_cframe = self:_get_spawn_cframe_for_stage(stage)
+		local free_spawn_cframe = VehicleServiceUtils:get_spawn_cframe_for_stage(stage)
 		vehicle_model:PivotTo(free_spawn_cframe + Vector3.new(0, spawn_offset, 0))
 	end
+end
+
+function VehicleServiceServer.get_max_stage(): number
+    return MAX_STAGE
 end
 
 function VehicleServiceServer.init(self: VehicleServiceServer)
@@ -399,6 +408,7 @@ function VehicleServiceServer.init(self: VehicleServiceServer)
 		self.reset_vehicle,
 		self.request_set_plate,
 		self.request_customise_color,
+        self.get_max_stage
 	})
 
 	local function player_added(player: Player)
