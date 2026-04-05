@@ -14,6 +14,7 @@ local ObstacleServiceServer = require(ServerScriptService.Services.ObstacleServi
 local PhysicsServiceServer = require(ServerScriptService.Services.PhysicsService.PhysicsServiceServer)
 local VehicleServiceServer = require(ServerScriptService.Services.VehicleService.VehicleServiceServer)
 local SkipServiceServer = require(ServerScriptService.Services.SkipService.SkipServiceServer)
+local ProximityServiceServer = require(ServerScriptService.Services.ProximityService.ProximityServiceServer)
 
 DataServiceServer:init()
 BadgeServiceServer:init()
@@ -23,4 +24,5 @@ SkipServiceServer:init()
 VehicleServiceServer:init()
 ObstacleServiceServer:init()
 CameraServiceServer:init()
+ProximityServiceServer:init()
 ConchServer:init()
