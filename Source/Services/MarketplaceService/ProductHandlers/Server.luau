@@ -8,6 +8,7 @@
 local ServerScriptService = game:GetService("ServerScriptService")
 local DataServiceServer = require(ServerScriptService.Services.DataService.DataServiceServer)
 local VehicleServiceServer = require(ServerScriptService.Services.VehicleService.VehicleServiceServer)
+local TrollServiceServer = require(ServerScriptService.Services.TrollService.TrollServiceServer)
 
 -- Functions
 local function add_skips(num_skips: number)
@@ -30,6 +31,21 @@ local function skip_to_end()
     end
 end
 
+local function troll_everyone()
+    return function(player: Player)
+        TrollServiceServer:explode_car_troll(player)
+    end
+end
+
+local function troll_individual()
+    return function(player: Player, target: Player?)
+        if not target then
+            return
+        end
+        TrollServiceServer:explode_car_troll(player, target)
+    end
+end
+
 -- Meow
 return {
 	skip_1 = {
@@ -46,5 +62,11 @@ return {
 	},
     skip_to_end = {
         on_recieved = skip_to_end()
+    },
+    troll_everyone = {
+        on_recieved = troll_everyone()
+    },
+    troll_individual = {
+        on_recieved = troll_individual()
     }
 }

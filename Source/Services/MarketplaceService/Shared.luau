@@ -9,6 +9,7 @@ local MarketplaceShared = {}
 MarketplaceShared.intent_types = {
 	normal = 1,
 	gift = 2,
+    target = 3
 }
 
 MarketplaceShared.product_types = {

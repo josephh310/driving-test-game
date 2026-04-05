@@ -5,7 +5,7 @@
 ]]
 
 local MarketplaceServer = {
-	purchase_intent = {},
+	purchase_intent = {} :: { Intent },
 }
 
 -- Dependancies
@@ -29,13 +29,18 @@ export type ReceiptInfo = {
 	CurrencyType: Enum.CurrencyType,
 	CurrencySpent: number,
 }
+export type Intent = {
+    type: number,
+	recipient: Player
+}
 
 -- Functions
 function MarketplaceServer._grant_product(
 	self: MarketplaceServer,
 	player: Player,
 	product_code: string,
-	reciept_info: ReceiptInfo
+	reciept_info: ReceiptInfo,
+    otherPlayer: Player?
 )
 	-- Fetch the product info
 	local product_info = MarketplaceServiceShared.products[product_code]
@@ -60,7 +65,7 @@ function MarketplaceServer._grant_product(
 
 	-- If a server handler exists, use it
 	if purchase_actions and purchase_actions.on_recieved then
-		purchase_actions.on_recieved(player)
+		purchase_actions.on_recieved(player, otherPlayer)
 		print(`Called server on_recieved for {player.Name}`)
 	end
 end
@@ -94,32 +99,42 @@ function MarketplaceServer._process_receipt(self: MarketplaceServer, reciept_inf
 	local intent_key = reciept_info.PlayerId + reciept_info.ProductId
 	local intent = self.purchase_intent[intent_key]
 
-	-- If the intent is to gift, then gift to the player stored in the intent
-	if intent and intent.type == MarketplaceServiceShared.intent_types.gift then
-		-- Grant the product to the recipient
-		self:_grant_product(intent.recipient, product_code, reciept_info)
+    if intent ~= nil then
+        -- If the intent is to gift, then gift to the player stored in the intent
+        if intent.type == MarketplaceServiceShared.intent_types.gift then
+            -- Grant the product to the recipient
+            self:_grant_product(intent.recipient, product_code, reciept_info)
 
-		-- Pass purchase to both the purchaser and the recipient to show it was a success + apply client effects
-		local players_involved = {
-			intent.recipient,
-			player,
-		}
-		self.networker:fire(players_involved, "process_purchase", product_code, player.UserId, intent.recipient.UserId)
+            -- Pass purchase to both the purchaser and the recipient to show it was a success + apply client effects
+            local players_involved = {
+                intent.recipient,
+                player,
+            }
+            self.networker:fire(players_involved, "process_purchase", product_code, player.UserId, intent.recipient.UserId)
 
-		-- Product has been granted, intent can be removed
-		self.purchase_intent[intent_key] = nil
-	else
-		-- Grant the product to the purchaser
-		self:_grant_product(player, product_code, reciept_info)
+            -- Product has been granted, intent can be removed
+            self.purchase_intent[intent_key] = nil
+        elseif intent.type == MarketplaceServiceShared.intent_types.target then
+            -- Grant the product to the purchaser
+	        self:_grant_product(player, product_code, reciept_info, intent.recipient)
 
-		-- Pass the purchase to the purchaser to show it was a success + apply client effects
-		self.networker:fire(player, "process_purchase", product_code, player.UserId, player.UserId)
-	end
+            -- Product has been granted, intent can be removed
+            self.purchase_intent[intent_key] = nil
 
+            -- Pass the purchase to the purchaser to show it was a success + apply client effects
+	        self.networker:fire(player, "process_purchase", product_code, player.UserId, player.UserId)
+        end
+    else
+        -- Grant the product to the purchaser
+	    self:_grant_product(player, product_code, reciept_info)
+	    
+        -- Pass the purchase to the purchaser to show it was a success + apply client effects
+        self.networker:fire(player, "process_purchase", product_code, player.UserId, player.UserId)
+    end
 	return Enum.ProductPurchaseDecision.PurchaseGranted
 end
 
-function MarketplaceServer.prompt_purchase(self: MarketplaceServer, player: Player, product_code: string)
+function MarketplaceServer.prompt_purchase(self: MarketplaceServer, player: Player, product_code: string, intent: Intent?)
 	-- Check for the product data, reject the request if it doesn't exist
 	local product_data = MarketplaceServiceShared.products[product_code]
 	if not product_data then
@@ -146,6 +161,10 @@ function MarketplaceServer.prompt_purchase(self: MarketplaceServer, player: Play
 		warn(`Failed to prompt purchase: {err}`)
 		return false, MarketplaceServiceShared.error_codes.marketplace_service_down
 	end
+
+    if intent then
+        self.purchase_intent[player.UserId + product_data.product_id] = intent
+    end
 
 	print(`Prompted {player.Name} to buy {product_code}`)
 	return true, nil

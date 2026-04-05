@@ -14,6 +14,7 @@ local MusicServiceClient = require(ReplicatedStorage.Shared.Services.MusicServic
 local ObstacleServiceClient = require(ReplicatedStorage.Shared.Services.ObstacleService.ObstacleServiceClient)
 local VehicleServiceClient = require(ReplicatedStorage.Shared.Services.VehicleService.VehicleServiceClient)
 local SkipServiceClient = require(ReplicatedStorage.Shared.Services.SkipService.SkipServiceClient)
+local ProximityServiceClient = require(ReplicatedStorage.Shared.Services.ProximityService.ProximityServiceClient)
 
 DataServiceClient:init()
 MarketplaceServiceClient:init()
@@ -23,4 +24,5 @@ SkipServiceClient:init()
 MusicServiceClient:init()
 Interface:init()
 CameraServiceClient:init()
+ProximityServiceClient:init()
 ConchClient:init()

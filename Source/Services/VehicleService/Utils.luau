@@ -13,7 +13,7 @@ local Stages = Map.Stages
 
 export type VehicleUtils = typeof(VehicleUtils)
 
-function VehicleUtils.get_spawn_cframe_for_stage(self: VehicleUtils, stage: number)
+function VehicleUtils.get_spawn_cframe_for_stage(self: VehicleUtils, stage: number): CFrame
 	-- Get the stage object
 	local Stage = Stages:FindFirstChild(tostring(stage))
 
@@ -45,7 +45,7 @@ function VehicleUtils.get_spawn_cframe_for_stage(self: VehicleUtils, stage: numb
 	return selected_spawn.CFrame
 end
 
-function VehicleUtils.get_player_from_vehicle(self: VehicleUtils, vehicle: Model)
+function VehicleUtils.get_player_from_vehicle(self: VehicleUtils, vehicle: Model): Player
 	local player_name = vehicle.Name
 	local player = Players:FindFirstChild(player_name)
 	if not player then
@@ -55,9 +55,19 @@ function VehicleUtils.get_player_from_vehicle(self: VehicleUtils, vehicle: Model
 	return player
 end
 
-function VehicleUtils.get_vehicle_from_player(self: VehicleUtils, player: Player)
+function VehicleUtils.get_vehicle_from_player(self: VehicleUtils, player: Player): Model
 	local vehicle_name = player.Name
 	local vehicle = SpawnedVehicles:FindFirstChild(vehicle_name)
+	if not vehicle then
+		warn(`{player} has no spawned vehicle.`)
+		return
+	end
+	return vehicle
+end
+
+function VehicleUtils.wait_for_player_vehicle(self: VehicleUtils, player: Player): Model
+    local vehicle_name = player.Name
+	local vehicle = SpawnedVehicles:WaitForChild(vehicle_name)
 	if not vehicle then
 		warn(`{player} has no spawned vehicle.`)
 		return
