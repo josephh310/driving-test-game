@@ -15,11 +15,13 @@ local ObstacleServiceClient = require(ReplicatedStorage.Shared.Services.Obstacle
 local VehicleServiceClient = require(ReplicatedStorage.Shared.Services.VehicleService.VehicleServiceClient)
 local SkipServiceClient = require(ReplicatedStorage.Shared.Services.SkipService.SkipServiceClient)
 local ProximityServiceClient = require(ReplicatedStorage.Shared.Services.ProximityService.ProximityServiceClient)
+local InputServiceClient = require(ReplicatedStorage.Shared.Services.InputService.InputServiceClient)
 
 DataServiceClient:init()
 MarketplaceServiceClient:init()
 VehicleServiceClient:init()
 ObstacleServiceClient:init()
+InputServiceClient:init()
 SkipServiceClient:init()
 MusicServiceClient:init()
 Interface:init()
