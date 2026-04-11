@@ -66,6 +66,26 @@ function VehicleServiceClient._setup_components(self: VehicleServiceClient, vehi
 	end
 end
 
+function VehicleServiceClient.set_throttle_float(self: VehicleServiceClient, throttle: number)
+    local vehicle = VehicleServiceUtils:get_vehicle_from_player(Player)
+    local scripted = vehicle:WaitForChild("Scripted")
+    local vehicle_seat = scripted:FindFirstChildWhichIsA("VehicleSeat")
+    if not vehicle_seat then
+        return
+    end
+    vehicle_seat.ThrottleFloat = throttle
+end
+
+function VehicleServiceClient.set_steer_float(self: VehicleServiceClient, steer: number)
+    local vehicle = VehicleServiceUtils:get_vehicle_from_player(Player)
+    local scripted = vehicle:WaitForChild("Scripted")
+    local vehicle_seat = scripted:FindFirstChildWhichIsA("VehicleSeat")
+    if not vehicle_seat then
+        return
+    end
+    vehicle_seat.SteerFloat = steer
+end
+
 function VehicleServiceClient.reset_vehicle_position(self: VehicleServiceClient)
 	local vehicle = VehicleServiceUtils:get_vehicle_from_player(Player) :: Model
 	if not vehicle then

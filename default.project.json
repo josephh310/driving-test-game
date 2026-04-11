@@ -43,6 +43,12 @@
               "$path": "Source/Services/DataService/Utils.luau"
             }
           },
+          "InputService": {
+            "$className": "Folder",
+            "InputServiceClient": {
+              "$path": "Source/Services/InputService/Client.luau"
+            }
+          },
           "MarketplaceService": {
             "$className": "Folder",
             "MarketplaceServiceClient": {
@@ -71,6 +77,12 @@
             },
             "ObstacleServiceUtils": {
               "$path": "Source/Services/ObstacleService/Utils.luau"
+            }
+          },
+          "ProximityService": {
+            "$className": "Folder",
+            "ProximityServiceClient": {
+              "$path": "Source/Services/ProximityService/Client.luau"
             }
           },
           "SkipService": {
@@ -256,10 +268,22 @@
             "$path": "Source/Services/PhysicsService/Server.luau"
           }
         },
+        "ProximityService": {
+          "$className": "Folder",
+          "ProximityServiceServer": {
+            "$path": "Source/Services/ProximityService/Server.luau"
+          }
+        },
         "SkipService": {
           "$className": "Folder",
           "SkipServiceServer": {
             "$path": "Source/Services/SkipService/Server.luau"
+          }
+        },
+        "TrollService": {
+          "$className": "Folder",
+          "TrollServiceServer": {
+            "$path": "Source/Services/TrollService/Server.luau"
           }
         },
         "VehicleService": {

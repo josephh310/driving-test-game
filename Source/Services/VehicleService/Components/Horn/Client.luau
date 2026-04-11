@@ -27,7 +27,8 @@ function Horn.init()
 		button.ActionIcon.AnchorPoint = Vector2.new(0.5, 0.5)
 		button.ActionIcon.Position = UDim2.fromScale(0.5, 0.5)
 		button.ActionIcon.ImageColor3 = Color3.fromRGB(0, 0, 0)
-	end
+        button.Position -= UDim2.fromScale(0, 0.4)
+    end
 	return function()
 		ContextActionService:UnbindAction(bind_name)
 	end
